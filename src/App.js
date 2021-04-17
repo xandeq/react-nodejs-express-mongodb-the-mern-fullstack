@@ -21,14 +21,15 @@ function App() {
   ]);
 
   function adicionarNovoObjetivoHandler(novoObjetivo) {
-    setListaObjetivos(listaObjetivos.concat(novoObjetivo));
-    listaObjetivos.push(novoObjetivo);
-    console.log(listaObjetivos);
+    //setListaObjetivos(listaObjetivos.concat(novoObjetivo));
+    setListaObjetivos((anteriorListaObjetivos) => {
+      return anteriorListaObjetivos.concat(novoObjetivo);
+    });
   }
 
   return (
     <div className="objetivos-do-curso">
-      <h2>Course Goals</h2>
+      <h2>Objetivos do Curso</h2>
       <NovoObjetivo adicionarObjetivo={adicionarNovoObjetivoHandler} />
       <ListaObjetivos objetivos={listaObjetivos} />
     </div>
