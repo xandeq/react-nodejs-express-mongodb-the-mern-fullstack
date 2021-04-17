@@ -1,0 +1,15 @@
+.lista{
+    list-style: none;
+    margin: 2rem;
+    padding: 0;
+  }
+  
+  .lista li {
+    margin: 1rem 0;
+    border: solid 1px #ccc;
+    padding: 1rem;
+  }
+  
+  .objetivos-do-curso h2 {
+    text-align: center;
+  }
