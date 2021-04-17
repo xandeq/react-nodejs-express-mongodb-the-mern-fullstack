@@ -8,7 +8,7 @@ const ListaObjetivos = (props) => {
       {props.objetivos.map((objtv) => {
         return (
           <li id={objtv.id} key={objtv.id}>
-            {objtv.id} - {objtv.texto}
+            {objtv.texto}
           </li>
         );
       })}

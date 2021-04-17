@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useState } from "react";
 
-const NovoObjetivo = props => {
-    function adicionarObjetivoHandler(event) {
-        event.preventDefault();
+const NovoObjetivo = (props) => {
+  const [textoDigitado, setTextoDigitado] = useState('');
 
-        const novoObjetivo = {
-            id: Math.random().toString(),
-            texto: 'exemplo que sera substituido'
-        }
+  function adicionarObjetivoHandler(event) {
+    event.preventDefault();
 
-        props.adicionarObjetivo(novoObjetivo);
-    }
+    const novoObjetivo = {
+      id: Math.random().toString(),
+      texto: textoDigitado,
+    };
 
-    return (<form className="novo-objetivo" onSubmit={adicionarObjetivoHandler}>
-        <input type="text"/>
-        <button type="submit">Adicionar Objetivo</button>
-    </form>);
-}
+    setTextoDigitado('');
+
+    props.adicionarObjetivo(novoObjetivo);
+  }
+
+  const textoAlteradoHandler = (event) => {
+    setTextoDigitado(event.target.value)
+  };
+
+  return (
+    <form className="novo-objetivo" onSubmit={adicionarObjetivoHandler}>
+      <input
+        type="text"
+        value={textoDigitado}
+        onChange={textoAlteradoHandler}
+      />
+      <button type="submit">Adicionar Objetivo</button>
+    </form>
+  );
+};
 
 export default NovoObjetivo;
