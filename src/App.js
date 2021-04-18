@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import "./App.css";
 import ListaObjetivos from "./components/ListaObjetivos/ListaObjetivos";
 import NovoObjetivo from "./components/NovoObjetivo/NovoObjetivo";
+
+import Usuarios from "./usuarios/pages/Usuarios";
 
 function App() {
   const [listaObjetivos, setListaObjetivos] = useState([
@@ -28,11 +31,24 @@ function App() {
   }
 
   return (
-    <div className="objetivos-do-curso">
-      <h2>Objetivos do Curso</h2>
-      <NovoObjetivo adicionarObjetivo={adicionarNovoObjetivoHandler} />
-      <ListaObjetivos objetivos={listaObjetivos} />
-    </div>
+    <Router>
+      <Route path="/">
+        Rota principal sem nada no PATH
+      </Route>
+      <Route path="/usuarios">
+        <Usuarios />
+      </Route>
+      <Route path="/objetivos">
+        <div className="objetivos-do-curso">
+          <h2>Objetivos do Curso</h2>
+          <NovoObjetivo adicionarObjetivo={adicionarNovoObjetivoHandler} />
+          <ListaObjetivos objetivos={listaObjetivos} />
+        </div>
+      </Route>
+      <Redirect to="/">
+        
+      </Redirect>
+    </Router>
   );
 }
 
