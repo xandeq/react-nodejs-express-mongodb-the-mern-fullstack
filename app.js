@@ -26,6 +26,11 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unknown error occurred!" });
 });
 
-mongoose.connect().then().catch();
-
-app.listen(5000);
+mongoose
+  .connect('mongodb+srv://xandeq:alexandre10@cluster0.5jbns.mongodb.net/places?retryWrites=true&w=majority')
+  .then(() => {
+    app.listen(5000);
+  })
+  .catch(err => {
+    console.log(err)
+  });
