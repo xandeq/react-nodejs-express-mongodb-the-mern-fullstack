@@ -5,6 +5,7 @@ const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
 const HttpError = require("./models/http-error");
 const mongoose = require("mongoose");
+MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 
@@ -26,11 +27,14 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unknown error occurred!" });
 });
 
-mongoose
-  .connect('mongodb+srv://xandeq:alexandre10@cluster0.5jbns.mongodb.net/places?retryWrites=true&w=majority')
+//MongoClient.connect(
+  MongoClient.connect(
+    'mongodb+srv://xandeq:alexandre10@cluster0.5jbns.mongodb.net/places?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }
+  )
   .then(() => {
+    console.log('Conectado');
     app.listen(5000);
   })
-  .catch(err => {
-    console.log(err)
+  .catch((err) => {
+    console.log(err);
   });
